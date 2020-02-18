@@ -1,5 +1,6 @@
 # SanshiNote
-![Example](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
+![Example2](https://raw.githubusercontent.com/Hansanshi/Image/master/Login.png)
+![Example2](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
 # Introduction
 **SanshiNote** is a simple, cross-platform, self-hosted and easy-to-migrate notebook software. It's based on git and markdown.
 
