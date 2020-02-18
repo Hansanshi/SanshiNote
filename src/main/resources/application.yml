@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:${dbDir}/test.db
+  jpa:
+    database-platform: ink.hansanshi.note.sqlite.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  resources:
+    static-locations: classpath:/static, file:${staticDir}, file:${frontDir}
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+register-forbidden: false
