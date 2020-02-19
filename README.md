@@ -25,3 +25,6 @@ The password and username of default admin user is `admin` and `admin`, separate
 
 You can block registartion via argumant `--"register-forbidden"=true`.
 
+# Developer guide
+The whole project is devided into two parts, back-end and front-end. Back-end is based on Spring Boot, Spring Data Jpa, JGit and SQLite(you can easily change database from SQLite to MySQL, MariaDB or other).
+Front-end is based Vue, ElmentUI and mavonEditor. And its repo is [here](https://github.com/Hansanshi/SanshiNote-front).
