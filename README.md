@@ -1,5 +1,5 @@
 # SanshiNote
-![Example2](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
+![Example1](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
 # Introduction
 **SanshiNote** is a simple, cross-platform, self-hosted and easy-to-migrate notebook software. It's based on git and markdown.
 
@@ -14,7 +14,10 @@ All your notes are stored as a file entitled `notes/<your_username>/<notebook_na
 SanshiNote can be deployed on where **jdk8** has been installed, and it's the only precondition.
 
 Download the [jar file](https://seafile.hansanshi.ink/f/6a318fb94c294bb0bd9f/?dl=1), run command
-`java -jar note-<version>.jar --username=<your_username> --password=<your_password>`.
+
+```shell
+java -jar note-<version>.jar --username=<your_username> --password=<your_password>
+```
 
 Access `<host>:8080` via your brower, and start the use. Firefox or Chrome recommonded.
 
