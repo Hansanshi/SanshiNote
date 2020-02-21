@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:${dbDir}/test.db
+    url: jdbc:sqlite:${dbDir}/sanshinote.db
   jpa:
     database-platform: ink.hansanshi.note.sqlite.SQLiteDialect
     hibernate:
