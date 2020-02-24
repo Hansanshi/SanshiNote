@@ -14,4 +14,4 @@ spring:
     multipart:
       max-file-size: 10MB
 
-register-forbidden: false
+register-forbidden: true

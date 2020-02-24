@@ -13,7 +13,7 @@ All your notes are stored as a file entitled `notes/<your_username>/<notebook_na
 # Quick start
 SanshiNote can be deployed on where **jdk8** has been installed, and it's the only precondition.
 
-Download the [jar file](https://seafile.hansanshi.ink/f/6a318fb94c294bb0bd9f/?dl=1), run command
+Download the jar file, run command
 
 ```shell
 java -jar note-<version>.jar --username=<your_username> --password=<your_password>
