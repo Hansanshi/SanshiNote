@@ -1,8 +1,9 @@
 package ink.hansanshi.note.service.impl;
 
 import ink.hansanshi.note.dao.DelNoteRepository;
+import ink.hansanshi.note.dao.DraftNoteRepository;
 import ink.hansanshi.note.dto.ServerResponse;
-import ink.hansanshi.note.entity.DelNoteDO;
+import ink.hansanshi.note.entity.DelNoteDo;
 import ink.hansanshi.note.service.IFileService;
 import ink.hansanshi.note.service.INoteService;
 import ink.hansanshi.note.util.GitUtil;
@@ -41,6 +42,9 @@ public class NoteServiceImpl implements INoteService {
 
     @Autowired
     private DelNoteRepository delNoteRepository;
+
+    @Autowired
+    private DraftNoteRepository draftNoteRepository;
 
     private static final String NOTEBOOK_FLAG_FILE = ".notebook";
 
@@ -141,12 +145,14 @@ public class NoteServiceImpl implements INoteService {
                 throw new RuntimeException("Save note failed");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("save note error", e);
         }
 
         //write file
         fileService.writeStringToFile(content,noteFile);
         GitUtil.addAndCommit(getOrCreateUserGit(),relativeFileName);
+
+        draftNoteRepository.deleteByUsernameAndNotebookNameAndTitle(getUsername(), notebookName, noteTitle);
         return ServerResponse.buildSuccessResponse();
     }
 
@@ -160,7 +166,7 @@ public class NoteServiceImpl implements INoteService {
         }
         String lastRef = GitUtil.getFileCurRef(getOrCreateUserGit(),relativeFileName);
         GitUtil.rmAndCommit(getOrCreateUserGit(),relativeFileName);
-        delNoteRepository.save(new DelNoteDO().setNotebook(notebookName)
+        delNoteRepository.save(new DelNoteDo().setNotebook(notebookName)
                                     .setTitle(noteTitle)
                                     .setLastRef(lastRef)
                                     .setContent(content)
@@ -170,7 +176,7 @@ public class NoteServiceImpl implements INoteService {
 
     @Override
     public ServerResponse recoverNote(Integer id){
-        DelNoteDO delNoteDO = delNoteRepository.findByIdAndUsername(id, getUsername());
+        DelNoteDo delNoteDO = delNoteRepository.findByIdAndUsername(id, getUsername());
         String relativeFileName = getRelativeFileName(delNoteDO.getNotebook(), delNoteDO.getTitle());
         File noteFile = new File(getOrCreateUserNotebookDir(), relativeFileName);
         if (noteFile.exists()){
@@ -230,13 +236,13 @@ public class NoteServiceImpl implements INoteService {
     public ServerResponse<List<DeletedNoteVo>> listDelNotes(){
         List<DeletedNoteVo> deletedNoteList = new ArrayList<>();
         delNoteRepository.findAllByUsername(getUsername())
-                .forEach(delNoteDO -> deletedNoteList.add(new DeletedNoteVo()
-                    .setId(delNoteDO.getId())
-                    .setTitle(delNoteDO.getTitle())
-                    .setNotebook(delNoteDO.getNotebook())
-                    .setLastRef(delNoteDO.getLastRef())
-                    .setUsername(delNoteDO.getUsername())
-                    .setContent(delNoteDO.getContent())
+                .forEach(delNoteDo -> deletedNoteList.add(new DeletedNoteVo()
+                    .setId(delNoteDo.getId())
+                    .setTitle(delNoteDo.getTitle())
+                    .setNotebook(delNoteDo.getNotebook())
+                    .setLastRef(delNoteDo.getLastRef())
+                    .setUsername(delNoteDo.getUsername())
+                    .setContent(delNoteDo.getContent())
         ));
         return ServerResponse.buildSuccessResponse(deletedNoteList);
     }

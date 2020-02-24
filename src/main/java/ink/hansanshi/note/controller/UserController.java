@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("validate")
     public ServerResponse validate(){
-        // Validate by interceptor
+        // Validated by interceptor
         return ServerResponse.buildSuccessResponse();
     }
 

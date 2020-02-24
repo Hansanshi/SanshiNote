@@ -1,6 +1,6 @@
 package ink.hansanshi.note.dao;
 
-import ink.hansanshi.note.entity.DelNoteDO;
+import ink.hansanshi.note.entity.DelNoteDo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,12 +12,12 @@ import java.util.List;
  * @date 2020/01/30
  */
 @Repository
-public interface DelNoteRepository extends JpaRepository<DelNoteDO, Integer> {
+public interface DelNoteRepository extends JpaRepository<DelNoteDo, Integer> {
 
     /** Param username is used to ensure record deleted by owner */
-    DelNoteDO findByIdAndUsername(Integer id, String username);
+    DelNoteDo findByIdAndUsername(Integer id, String username);
 
-    List<DelNoteDO> findAllByUsername(String username);
+    List<DelNoteDo> findAllByUsername(String username);
 
     /** Param username is used to ensure record deleted by owner */
     @Transactional

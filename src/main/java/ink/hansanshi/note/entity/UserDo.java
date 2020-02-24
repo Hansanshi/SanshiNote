@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class UserDO {
+public class UserDo {
 
     @Id
     @GeneratedValue

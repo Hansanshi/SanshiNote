@@ -1,6 +1,6 @@
 package ink.hansanshi.note.dao;
 
-import ink.hansanshi.note.entity.UserDO;
+import ink.hansanshi.note.entity.UserDo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
  * @date 2019/12/19
  */
 @Repository
-public interface UserRepository extends JpaRepository<UserDO,Integer> {
+public interface UserRepository extends JpaRepository<UserDo,Integer> {
 
-    UserDO findByUsername(String username);
+    UserDo findByUsername(String username);
 
-    UserDO findByUsernameAndPassword(String username, String password);
+    UserDo findByUsernameAndPassword(String username, String password);
 
-    UserDO findFirstByStatus(Integer status);
+    UserDo findFirstByStatus(Integer status);
 
 
 }

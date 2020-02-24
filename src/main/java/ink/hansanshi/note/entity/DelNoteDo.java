@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class DelNoteDO {
+public class DelNoteDo {
 
     @Id
     @GeneratedValue

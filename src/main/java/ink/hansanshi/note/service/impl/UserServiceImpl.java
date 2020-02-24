@@ -3,7 +3,7 @@ package ink.hansanshi.note.service.impl;
 import com.github.benmanes.caffeine.cache.Cache;
 import ink.hansanshi.note.dao.UserRepository;
 import ink.hansanshi.note.dto.ServerResponse;
-import ink.hansanshi.note.entity.UserDO;
+import ink.hansanshi.note.entity.UserDo;
 import ink.hansanshi.note.service.IUserService;
 import ink.hansanshi.note.util.MD5Util;
 import ink.hansanshi.note.util.ThreadLocalUtil;
@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author hansanshi
@@ -46,9 +44,9 @@ public class UserServiceImpl implements IUserService {
 
     @PostConstruct
     private void initAdminUser(){
-        UserDO userDO = userRepository.findFirstByStatus(0);
+        UserDo userDO = userRepository.findFirstByStatus(0);
         if (userDO == null){
-            UserDO adminUser = new UserDO().setUsername(adminUsername).setPassword(MD5Util.MD5EncodeUtf8(adminPassword)).setStatus(0);
+            UserDo adminUser = new UserDo().setUsername(adminUsername).setPassword(MD5Util.MD5EncodeUtf8(adminPassword)).setStatus(0);
             userRepository.save(adminUser);
         }
     }
@@ -56,7 +54,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<UserVo> login(String username, String password){
         String encodedPassword = MD5Util.MD5EncodeUtf8(password);
-        UserDO userDO = userRepository.findByUsernameAndPassword(username, encodedPassword);
+        UserDo userDO = userRepository.findByUsernameAndPassword(username, encodedPassword);
         if (userDO == null){
             return ServerResponse.buildErrorResponse("用户名或密码错误");
         }
@@ -91,7 +89,7 @@ public class UserServiceImpl implements IUserService {
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)){
             throw new IllegalArgumentException("Arguments can't be blank");
         }
-        UserDO userDO = userRepository.save(new UserDO().setUsername(username).setPassword(MD5Util.MD5EncodeUtf8(password)));
+        UserDo userDO = userRepository.save(new UserDo().setUsername(username).setPassword(MD5Util.MD5EncodeUtf8(password)));
         UserVo userVo = new UserVo().setUsername(userDO.getUsername());
         return ServerResponse.buildSuccessResponse(userVo);
     }
@@ -101,7 +99,7 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse changePassword(String oldPassword, String newPassword){
         ValidateUtil.notBlankString(oldPassword, newPassword);
         String oldEncodedPassword = MD5Util.MD5EncodeUtf8(oldPassword);
-        UserDO userDO = userRepository.findByUsernameAndPassword(getUsername(), oldEncodedPassword);
+        UserDo userDO = userRepository.findByUsernameAndPassword(getUsername(), oldEncodedPassword);
         if (userDO == null){
             return ServerResponse.buildErrorResponse("Wrong password");
         }
