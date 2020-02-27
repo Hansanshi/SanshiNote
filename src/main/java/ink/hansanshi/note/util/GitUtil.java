@@ -318,7 +318,10 @@ public class GitUtil {
 
         @Override
         protected void configure(OpenSshConfig.Host hc, Session session) {
-            // do nothing
+            // to solve UnknownHostKey Exception, but not secure
+            Properties config = new Properties();
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
         }
 
         @Override
