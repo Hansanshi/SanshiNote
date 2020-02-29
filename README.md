@@ -1,5 +1,6 @@
 # SanshiNote
 ![Example1](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
+[Demo Website](http://note.sanshicloud.cn/), username is `admin` and password is `admin`.
 # Introduction
 **SanshiNote** is a simple, cross-platform, self-hosted and easy-to-migrate notebook software. It's based on git and markdown.
 
