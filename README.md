@@ -1,6 +1,14 @@
 # SanshiNote
 ![Example1](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
 [Demo Website](http://note.sanshicloud.cn/), username is `admin` and password is `admin`.
+
+# Next plan
+2020.05.24
+Change editor, support more modes (WYSIWYG and Real Time Rendering) and other functions.
+It will be completed in few months.
+更换前端使用的编辑器，因为原来使用的编辑器只支持分屏预览模式，后续将支持所见即所得和及时渲染的模式。
+页面的样式也将进行一定的调整。争取最近几个月有空更新下。
+
 # Introduction
 **SanshiNote** is a simple, cross-platform, self-hosted and easy-to-migrate notebook software. It's based on git and markdown.
 
