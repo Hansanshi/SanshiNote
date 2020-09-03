@@ -1,3 +1,6 @@
+# Warn!
+This project has been migrated to [markidea](https://github.com/Hansanshi/mark-idea).
+该项目已迁移至[markidea](https://github.com/Hansanshi/mark-idea)。
 # SanshiNote
 ![Example1](https://raw.githubusercontent.com/Hansanshi/Image/master/Home.png)
 [Demo Website](http://note.sanshicloud.cn/), username is `admin` and password is `admin`.
